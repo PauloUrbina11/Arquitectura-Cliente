@@ -16,15 +16,17 @@ def save_notes(notes):
     with open(NOTES_FILE, 'w') as f:
         json.dump(notes, f, indent=4)
 
-# Función para mostrar las notas
+# Actualización función list_notes
 def list_notes():
     notes = load_notes()
     if not notes:
-        print("\nNo hay notas disponibles.")
+        print("\nNo hay notas disponibles. ¡Empieza a añadir las tuyas!")
     else:
-        print("\nLista de notas:")
+        print("\n--- Lista de Notas ---")
         for i, note in enumerate(notes, start=1):
             print(f"{i}. {note}")
+        print("---------------------")
+
 
 # Función para añadir una nueva nota
 def add_note():
