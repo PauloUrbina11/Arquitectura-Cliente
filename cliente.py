@@ -85,8 +85,9 @@ def main():
             add_note()
         elif option == '3':
             delete_note()
+        # Actualiza la opción de salida en main()
         elif option == '4':
-            print("Saliendo del programa...")
+            print("\nGracias por usar el programa de notas. ¡Hasta luego!")
             break
         else:
             print("Opción no válida, intenta de nuevo.")
