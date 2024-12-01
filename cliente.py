@@ -28,13 +28,21 @@ def list_notes():
         print("---------------------")
 
 
-# Función para añadir una nueva nota
+# Actualiza la función add_note
 def add_note():
-    new_note = input("\nEscribe tu nueva nota: ")
-    notes = load_notes()
-    notes.append(new_note)
-    save_notes(notes)
-    print("Nota añadida correctamente.")
+    new_note = input("\nEscribe tu nueva nota: ").strip()
+    if not new_note:
+        print("La nota no puede estar vacía. Inténtalo de nuevo.")
+        return
+    confirm = input(f"¿Deseas guardar esta nota? (S/N): {new_note} ").lower()
+    if confirm == 's':
+        notes = load_notes()
+        notes.append(new_note)
+        save_notes(notes)
+        print("Nota añadida correctamente.")
+    else:
+        print("La nota no fue guardada.")
+
 
 # Función para eliminar una nota
 def delete_note():
