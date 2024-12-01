@@ -4,13 +4,15 @@ import os
 # Ruta donde se guardarán las notas
 NOTES_FILE = 'notas.json'
 
-# Función para cargar las notas desde el archivo JSON
+# Actualiza función para cargar las notas desde el archivo JSON
 def load_notes():
-    if os.path.exists(NOTES_FILE):
-        with open(NOTES_FILE, 'r') as f:
-            return json.load(f)
-    return []
-
+    if not os.path.exists(NOTES_FILE):
+        print("\nNo se encontró el archivo de notas. Creando uno nuevo...")
+        with open(NOTES_FILE, 'w') as f:
+            json.dump([], f)
+    with open(NOTES_FILE, 'r') as f:
+        return json.load(f)
+    
 # Función para guardar las notas en el archivo JSON
 def save_notes(notes):
     with open(NOTES_FILE, 'w') as f:
