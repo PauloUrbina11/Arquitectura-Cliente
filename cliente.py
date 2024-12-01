@@ -44,20 +44,28 @@ def add_note():
         print("La nota no fue guardada.")
 
 
-# Función para eliminar una nota
+# Actualiza la función delete_note
 def delete_note():
     list_notes()
     notes = load_notes()
     if notes:
-        note_index = int(input("\nIntroduce el número de la nota que deseas eliminar: "))
-        if 0 < note_index <= len(notes):
-            removed_note = notes.pop(note_index - 1)
-            save_notes(notes)
-            print(f"Nota '{removed_note}' eliminada correctamente.")
-        else:
-            print("Índice no válido.")
+        try:
+            note_index = int(input("\nIntroduce el número de la nota que deseas eliminar: "))
+            if 0 < note_index <= len(notes):
+                confirm = input(f"¿Estás seguro de eliminar la nota '{notes[note_index - 1]}'? (S/N): ").lower()
+                if confirm == 's':
+                    removed_note = notes.pop(note_index - 1)
+                    save_notes(notes)
+                    print(f"Nota '{removed_note}' eliminada correctamente.")
+                else:
+                    print("La nota no fue eliminada.")
+            else:
+                print("Índice fuera de rango.")
+        except ValueError:
+            print("Por favor, introduce un número válido.")
     else:
         print("No hay notas para eliminar.")
+
 
 # Función principal con el menú de opciones
 def main():
